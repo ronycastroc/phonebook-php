@@ -1,5 +1,6 @@
 <?php
   include_once("config/url.php");
+  include_once("config/connection.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="<?= $BASE_URL ?>/index.php">
         <img src="<?= $BASE_URL ?>/img/logo.svg" alt="Book">
       </a>
