@@ -22,16 +22,45 @@
       $stmt->bindParam(":name", $name);
       $stmt->bindParam(":phone", $phone);
       $stmt->bindParam(":observations", $observations);
-    }
 
-    try {
+      try {
 
-      $stmt->execute();
-      $_SESSION["msg"] = "Contact created successfully";
-  
-    } catch(PDOException $e) {
-      $error = $e->getMessage();
-      echo "Erro: $error";
+        $stmt->execute();
+        $_SESSION["msg"] = "Contact created successfully";
+    
+      } catch(PDOException $e) {
+        $error = $e->getMessage();
+        echo "Erro: $error";
+      }
+
+    } else if($data["type"] === "edit") {
+      //UPTATE
+      $name = $data["name"];
+      $phone = $data["phone"];
+      $observations = $data["observations"];
+      $id = $data["id"];
+
+      $query = "UPDATE contacts 
+                SET name = :name, phone = :phone, observations = :observations 
+                WHERE id = :id";
+
+      $stmt = $conn->prepare($query);
+
+      $stmt->bindParam(":name", $name);
+      $stmt->bindParam(":phone", $phone);
+      $stmt->bindParam(":observations", $observations);
+      $stmt->bindParam(":id", $id);
+
+      try {
+
+        $stmt->execute();
+        $_SESSION["msg"] = "Contact updated successfully";
+    
+      } catch(PDOException $e) {
+        $error = $e->getMessage();
+        echo "Erro: $error";
+      }
+
     }
 
     // REDIRECT HOME
